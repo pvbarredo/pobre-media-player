@@ -17,7 +17,7 @@ from PyQt6.QtMultimedia import QMediaPlayer, QAudioOutput
 from PyQt6.QtMultimediaWidgets import QVideoWidget
 
 VERSION = "1.0.0"
-GITHUB_REPO = "yourusername/pobre-media-player"  # Update this with your GitHub repo
+GITHUB_REPO = "pvbarredo/pobre-media-player"  
 
 
 class VideoPlayer(QMainWindow):
