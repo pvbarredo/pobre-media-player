@@ -5,8 +5,11 @@ A lightweight, portable media player built with Python and PyQt6 for Windows and
 ## Features ✨
 
 - **MP4 Video Playback** - Play your favorite MP4 videos
-- **Drag & Drop Support** - Simply drag and drop video files to play
-- **Basic Controls** - Play, pause, and seek through videos
+- **Maximized Video Display** - Video takes up 80% of window with compact controls (20%)
+- **Drag & Drop Support** - Simply drag and drop video files anywhere in the app
+- **Visual Placeholder** - Dashed border with instructions when no video is loaded
+- **Basic Controls** - Play, pause, seek, and volume control
+- **Keyboard Shortcuts** - Control playback with arrow keys and spacebar
 - **Cross-Platform** - Works on Windows and Linux
 - **Auto-Update Checker** - Stay up to date with the latest releases
 - **Portable** - No installation required
@@ -48,10 +51,25 @@ There are two ways to play videos:
 
 ### Controls
 
-- **Play/Pause**: Click the play/pause button or press Space
+- **Play/Pause**: Click the play/pause button or press `Space`
 - **Seek**: Click anywhere on the progress bar to jump to that position
+- **Volume**: Use the volume slider or press `Up Arrow` / `Down Arrow` to adjust
+- **Skip Forward**: Press `Right Arrow` to skip forward 3 seconds
+- **Skip Backward**: Press `Left Arrow` to skip backward 3 seconds
 - **Open File**: `Ctrl+O` or `File > Open Video`
 - **Exit**: `Ctrl+Q` or `File > Exit`
+
+#### Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `Space` | Play/Pause |
+| `Left Arrow` | Rewind 3 seconds |
+| `Right Arrow` | Forward 3 seconds |
+| `Up Arrow` | Increase volume (+5%) |
+| `Down Arrow` | Decrease volume (-5%) |
+| `Ctrl+O` | Open video file |
+| `Ctrl+Q` | Exit application |
 
 ## Menu Structure 📋
 
@@ -154,13 +172,14 @@ MIT License - feel free to use this project for any purpose.
 ## Roadmap 🗺️
 
 Future features planned:
-- Volume control
 - Fullscreen mode
 - Playlist support
 - Subtitle support
 - Video filters and effects
 - Remember last played position
 - Recent files menu
+- Mute button
+- Speed control (slow motion / fast forward)
 
 ## Support 💬
 

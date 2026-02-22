@@ -60,16 +60,32 @@ python3 player.py
 ## How to Use
 
 1. **Opening Videos:**
-   - Drag and drop an MP4 file onto the player window
+   - Drag and drop an MP4 file anywhere on the player window (on the dashed border placeholder or video area)
    - OR use `File > Open Video` menu
    - OR press `Ctrl+O`
 
-2. **Playback Controls:**
-   - Click the Play/Pause button to control playback
-   - Click anywhere on the progress bar to seek
-   - The time labels show current position and total duration
+2. **Player Interface:**
+   - When no video is loaded, you'll see a dashed border with text "Drag and drop the video here to play"
+   - Once a video is loaded, it will appear in the maximized video area (80% of window)
+   - Controls are compact and take only 20% of the window height at the bottom
 
-3. **Menu Options:**
+3. **Playback Controls:**
+   - Click the Play/Pause button to control playback
+   - Click anywhere on the progress bar to jump immediately to that position
+   - Drag the progress slider to seek through the video
+   - Use the volume slider to adjust volume
+   - The time labels show current position and total duration (HH:MM:SS)
+
+4. **Keyboard Shortcuts:**
+   - `Space`: Play/Pause
+   - `Left Arrow`: Rewind 3 seconds
+   - `Right Arrow`: Forward 3 seconds
+   - `Up Arrow`: Increase volume (+5%)
+   - `Down Arrow`: Decrease volume (-5%)
+   - `Ctrl+O`: Open video file
+   - `Ctrl+Q`: Exit application
+
+5. **Menu Options:**
    - **File > Open Video**: Browse for a video file
    - **File > Exit**: Close the application
    - **Help > Check for Updates**: Check for new releases
