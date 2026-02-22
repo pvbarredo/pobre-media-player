@@ -325,13 +325,15 @@ GITHUB_REPO = "pvbarredo/pobre-media-player"  # GitHub username/repository
    - Build: `pyinstaller --onefile --windowed --name="PobreMediaPlayer" player.py`
    - Upload artifact: `PobreMediaPlayer.exe`
 
-2. **build-linux** (runs on ubuntu-latest)
+2. **build-linux** (runs on ubuntu-20.04)
    - Checkout code
    - Setup Python 3.11
    - Install dependencies from requirements.txt
    - Install PyInstaller
    - Build: `pyinstaller --onefile --windowed --name="PobreMediaPlayer" player.py`
+   - Set execute permissions: `chmod +x dist/PobreMediaPlayer`
    - Upload artifact: `PobreMediaPlayer`
+   - **Note**: Uses Ubuntu 20.04 (GLIBC 2.31) for better compatibility with older Linux distributions
 
 3. **create-release** (depends on build jobs)
    - Download both artifacts

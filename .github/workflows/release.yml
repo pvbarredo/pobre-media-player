@@ -27,16 +27,16 @@ jobs:
       
       - name: Build executable
         run: |
-          pyinstaller --onefile --windowed --name=PobreMediaPlayer-Windows player.py
+          pyinstaller --onefile --windowed --name=PobreMediaPlayer player.py
       
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: windows-build
-          path: dist/PobreMediaPlayer-Windows.exe
+          path: dist/PobreMediaPlayer.exe
 
   build-linux:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04  # Use older Ubuntu for better GLIBC compatibility
     steps:
       - uses: actions/checkout@v4
       
@@ -53,13 +53,17 @@ jobs:
       
       - name: Build executable
         run: |
-          pyinstaller --onefile --windowed --name=PobreMediaPlayer-Linux player.py
+          pyinstaller --onefile --windowed --name=PobreMediaPlayer player.py
+      
+      - name: Make executable
+        run: |
+          chmod +x dist/PobreMediaPlayer
       
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: linux-build
-          path: dist/PobreMediaPlayer-Linux
+          path: dist/PobreMediaPlayer
 
   create-release:
     needs: [build-windows, build-linux]
@@ -85,7 +89,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            ./artifacts/windows/PobreMediaPlayer-Windows.exe
-            ./artifacts/linux/PobreMediaPlayer-Linux
+            ./artifacts/windows/PobreMediaPlayer.exe
+            ./artifacts/linux/PobreMediaPlayer
           generate_release_notes: true
           token: ${{ secrets.GITHUB_TOKEN }}

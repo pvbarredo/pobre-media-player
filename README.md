@@ -45,10 +45,52 @@ A lightweight, portable media player built with Python and PyQt6 for Windows and
 ### For End Users
 
 Download the latest release from the [Releases page](https://github.com/pvbarredo/pobre-media-player/releases):
-- **Windows**: Download `PobreMediaPlayer.exe` and run it
-- **Linux**: Download `PobreMediaPlayer`, make it executable (`chmod +x PobreMediaPlayer`), and run it
+
+#### Windows Installation
+
+1. Download `PobreMediaPlayer.exe`
+2. Double-click to run (you may see a SmartScreen warning - see below)
+
+#### Linux Installation
+
+1. Download `PobreMediaPlayer`
+2. Open terminal in the download folder
+3. Make it executable (if needed - newer releases have this pre-set):
+   ```bash
+   chmod +x PobreMediaPlayer
+   ```
+4. Run it:
+   ```bash
+   ./PobreMediaPlayer
+   ```
+
+**Alternative (using file manager):**
+- Right-click file → Properties → Permissions tab
+- Check "Allow executing file as program" (may already be checked on newer releases)
+- Double-click the file to run
+
+**System Requirements:** Ubuntu 20.04+, Debian 11+, Fedora 33+ or equivalent (GLIBC 2.31+)
 
 No installation required - just download and run!
+
+#### Windows Security Warning ⚠️
+
+When running the Windows executable for the first time, you may see a **Windows SmartScreen warning** saying "Windows protected your PC" or that the app might be dangerous.
+
+**This is normal and safe.** The warning appears because:
+- The executable is not digitally signed with a code signing certificate
+- Windows doesn't recognize the publisher (signing certificates cost $100-$400/year)
+- This is common for open-source projects and indie software
+
+**To run the application:**
+
+1. Click **"More info"** on the SmartScreen warning dialog
+2. Click the **"Run anyway"** button that appears
+3. The app will launch normally
+
+**Alternative method:** Right-click the `.exe` file → Properties → Check "Unblock" → Apply → OK, then run the file.
+
+**The app is safe** - it's open source, and you can verify the code yourself in this repository. The executable is built automatically by GitHub Actions from the source code.
 
 ### For Developers
 
@@ -340,7 +382,8 @@ pobre-media-player/
 #### .github/workflows/release.yml
 - Triggers on git tag push (v*.*.*)
 - Builds Windows executable using PyInstaller on windows-latest runner
-- Builds Linux executable using PyInstaller on ubuntu-latest runner
+- Builds Linux executable using PyInstaller on ubuntu-20.04 runner (for GLIBC 2.31 compatibility)
+- Sets execute permissions on Linux binary with `chmod +x`
 - Uploads artifacts using actions/upload-artifact@v4
 - Creates GitHub release with both executables using softprops/action-gh-release@v2
 - Requires `permissions: contents: write` for release creation
@@ -433,7 +476,7 @@ The project uses GitHub Actions for automated builds and releases:
 
 The `.github/workflows/release.yml` workflow:
 - **Trigger**: Push of tags matching `v*.*.*` pattern
-- **Build Jobs**: Run in parallel on `windows-latest` and `ubuntu-latest`
+- **Build Jobs**: Run in parallel on `windows-latest` and `ubuntu-20.04` (older Ubuntu for better Linux compatibility)
 - **Artifacts**: Uploaded with retention period
 - **Release**: Created with `permissions: contents: write`
 - **Asset Names**: `PobreMediaPlayer.exe` (Windows), `PobreMediaPlayer` (Linux)
@@ -460,6 +503,42 @@ If you prefer manual releases:
 **Problem**: Audio but no video, or video but no audio
 - **Solution**: Codec issue - convert to MP4 with standard codecs
 - **Alternative**: Install codec packs on your system
+
+### Windows Security Warning
+
+**Problem**: Windows shows "Windows protected your PC" or SmartScreen warning when running the .exe file
+- **Solution**: This is normal for unsigned executables. Click "More info" then "Run anyway"
+- **Alternative**: Right-click .exe → Properties → Check "Unblock" → Apply → OK
+- **Why it happens**: The app isn't digitally signed (code signing certificates are expensive)
+- **Is it safe?**: Yes - the app is open source, built by GitHub Actions from verified code
+
+### Linux Execution Issues
+
+**Problem**: "Could Not Display" or "No application installed for executable files" error when double-clicking
+- **Cause**: File doesn't have execute permissions set (fixed in newer releases, but may occur with older downloads)
+- **Solution**: Run `chmod +x PobreMediaPlayer` in terminal, then run `./PobreMediaPlayer`
+- **Alternative**: Right-click file → Properties → Permissions → Check "Allow executing file as program"
+- **Note**: Releases from v1.0.1+ have execute permissions pre-set
+
+**Problem**: `GLIBC_2.XX not found` error when running the executable
+- **Cause**: Your Linux distribution has an older version of GLIBC than required
+- **Solution**: Download a newer version (releases are built on Ubuntu 20.04 for compatibility with most distros)
+- **Workaround**: Run from source instead:
+  ```bash
+  git clone https://github.com/pvbarredo/pobre-media-player.git
+  cd pobre-media-player
+  pip install -r requirements.txt
+  python player.py
+  ```
+- **Supported distros**: Ubuntu 20.04+, Debian 11+, Fedora 33+, or equivalent
+
+**Problem**: Application won't start or crashes immediately on Linux
+- **Solution**: Install required system packages:
+  ```bash
+  sudo apt install libxcb-xinerama0 libxcb-cursor0  # Qt dependencies
+  sudo apt install gstreamer1.0-plugins-base gstreamer1.0-plugins-good  # Video playback
+  ```
+- **For other distros**: Install equivalent Qt6 and GStreamer packages
 
 ### Keyboard Shortcut Issues
 

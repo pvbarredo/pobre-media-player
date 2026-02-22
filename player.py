@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Pobre Media Player - A lightweight, portable MP4 video player
-Version: 1.0.0
+Version: 1.0.3
 """
 
 import sys
