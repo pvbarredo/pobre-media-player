@@ -5,11 +5,13 @@ A lightweight, portable media player built with Python and PyQt6 for Windows and
 ## Features ✨
 
 - **MP4 Video Playback** - Play your favorite MP4 videos
-- **Maximized Video Display** - Video takes up 80% of window with compact controls (20%)
+- **Maximized Video Display** - Video takes up 90% of window with ultra-compact controls (10%)
 - **Drag & Drop Support** - Simply drag and drop video files anywhere in the app
 - **Visual Placeholder** - Dashed border with instructions when no video is loaded
 - **Basic Controls** - Play, pause, seek, and volume control
 - **Keyboard Shortcuts** - Control playback with arrow keys and spacebar
+- **Highlight CSV Tool** - Create timestamped markers with left/right directions
+- **Play All Feature** - Automatically play video at all recorded timestamps
 - **Cross-Platform** - Works on Windows and Linux
 - **Auto-Update Checker** - Stay up to date with the latest releases
 - **Portable** - No installation required
@@ -64,6 +66,9 @@ There are two ways to play videos:
 | Key | Action |
 |-----|--------|
 | `Space` | Play/Pause |
+| `S` | Add current video time to Highlight CSV |
+| `L` | Set last CSV row direction to Left |
+| `R` | Set last CSV row direction to Right |
 | `Left Arrow` | Rewind 3 seconds |
 | `Right Arrow` | Forward 3 seconds |
 | `Up Arrow` | Increase volume (+5%) |
@@ -78,7 +83,7 @@ There are two ways to play videos:
 - **Exit** (Ctrl+Q) - Close the application
 
 ### Tools
-- (Future features coming soon)
+- **Highlight CSV** - Create a table of timestamps with left/right directions and export to CSV
 
 ### Help
 - **Check for Updates** - Check for new releases on GitHub

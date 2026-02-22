@@ -21,17 +21,30 @@ A lightweight, portable media player built with Python that supports MP4 video p
 - requests for update checking
 
 ## User Interface
-- Main window with maximized video display area (80% of window)
+- Main window with maximized video display area (90% of window)
 - Visual placeholder with dashed border and instructions when no video is loaded
-- Compact control bar at bottom (20% of window height)
+- Ultra-compact control bar at bottom (10% of window height)
 - Play/pause button
 - Progress bar with seek functionality and instant jump on click
 - Time display in HH:MM:SS format
 - Volume slider with percentage display
 - Menu bar with File, Tools, and Help menus
+- Footer in status bar: "Pedro Barredo @ 2026" (bottom right)
+
+## Tools
+- **Highlight CSV**: Non-modal window for creating timestamped markers
+  - Table with Time and Direction columns
+  - Add rows manually or press 'S' key to capture current video time
+  - Press 'L' or 'R' keys to quickly set last row direction
+  - Play All button: Automatically play video at each recorded timestamp (3 seconds each)
+  - Export to CSV file
+  - Window stays open while interacting with main player
 
 ## Keyboard Shortcuts
 - **Space**: Toggle play/pause
+- **S**: Add current video time to Highlight CSV window
+- **L**: Set last CSV row direction to Left
+- **R**: Set last CSV row direction to Right
 - **Left Arrow**: Rewind 3 seconds
 - **Right Arrow**: Forward 3 seconds
 - **Up Arrow**: Increase volume by 5%
