@@ -62,17 +62,46 @@ You can manually trigger the self-hosted build:
 3. Click "Run workflow"
 4. Select branch and click "Run workflow"
 
+## Linux Runner Setup
+
+If you also have a Linux self-hosted runner, follow similar steps:
+
+1. **Download and configure the Linux runner** from GitHub Settings → Actions → Runners
+2. **Add the `linux` label** during configuration
+3. **Install system dependencies for PyQt6**:
+   ```bash
+   sudo apt-get update
+   sudo apt-get install -y qt6-base-dev libgl1-mesa-dev \
+     libxcb-xinerama0 libxcb-cursor0 libxkbcommon-x11-0 \
+     libxcb-icccm4 libxcb-image0 libxcb-keysyms1 \
+     libxcb-randr0 libxcb-render-util0 libxcb-shape0
+   ```
+4. **Start the runner as a service**:
+   ```bash
+   sudo ./svc.sh install
+   sudo ./svc.sh start
+   ```
+
 ## Troubleshooting
 
 ### Runner Not Picking Up Jobs
 - Verify runner is online: Check Settings → Actions → Runners
-- Ensure labels match: `runs-on: [self-hosted, windows]`
-- Check runner service is running: `./svc.status.cmd`
+- Ensure labels match: `runs-on: [self-hosted, windows]` or `[self-hosted, linux]`
+- Check runner service is running: `./svc.status.cmd` (Windows) or `sudo ./svc.sh status` (Linux)
 
 ### Build Failures
+
+#### Windows
 - Ensure Python 3.11+ is installed on your PC
 - Verify all dependencies can be installed
 - Check runner has internet access for pip installs
+- **PowerShell execution policy error**: Run `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force`
+
+#### Linux
+- **PyQt6 build errors**: Install Qt6 development libraries (see Linux Runner Setup above)
+- Ensure Python 3.11+ is installed
+- Runner needs sudo privileges for installing system packages
+- Check that the runner user can execute sudo without password prompt (add to sudoers)
 
 ### Runner Performance
 - The runner uses your PC's resources when building
