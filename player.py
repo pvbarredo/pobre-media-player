@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Pobre Media Player - A lightweight, portable MP4 video player
-Version: 1.0.3
+Version: 1.0.4
 """
 
 import sys
@@ -20,7 +20,7 @@ from PyQt6.QtGui import QAction, QDragEnterEvent, QDropEvent, QKeyEvent, QPalett
 from PyQt6.QtMultimedia import QMediaPlayer, QAudioOutput
 from PyQt6.QtMultimediaWidgets import QVideoWidget
 
-VERSION = "1.0.0"
+VERSION = "1.0.4"
 GITHUB_REPO = "pvbarredo/pobre-media-player"  
 
 
