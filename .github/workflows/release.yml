@@ -36,7 +36,7 @@ jobs:
           path: dist/PobreMediaPlayer.exe
 
   build-linux:
-    runs-on: ubuntu-20.04  # Use older Ubuntu for better GLIBC compatibility
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       
