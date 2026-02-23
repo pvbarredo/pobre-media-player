@@ -44,16 +44,23 @@ A lightweight, portable media player built with Python and PyQt6 for Windows and
 
 ### For End Users
 
-Download the latest release from the [Releases page](https://github.com/pvbarredo/pobre-media-player/releases):
+Download the latest release from the [Releases page](https://github.com/pvbarredo/pobre-media-player/releases/latest):
+
+**Quick Downloads (always latest version):**
+- 🪟 **Windows**: [PobreMediaPlayer.exe](https://github.com/pvbarredo/pobre-media-player/releases/latest/download/PobreMediaPlayer.exe)
+- 🐧 **Linux (Ubuntu/Debian)**: [PobreMediaPlayer](https://github.com/pvbarredo/pobre-media-player/releases/latest/download/PobreMediaPlayer)
+- 🎩 **Linux (Fedora/Nobara)**: [PobreMediaPlayer-Nobara](https://github.com/pvbarredo/pobre-media-player/releases/latest/download/PobreMediaPlayer-Nobara)
 
 #### Windows Installation
 
-1. Download `PobreMediaPlayer.exe`
+1. Click the Windows download link above or download `PobreMediaPlayer.exe` from the releases page
 2. Double-click to run (you may see a SmartScreen warning - see below)
 
 #### Linux Installation
 
-1. Download `PobreMediaPlayer`
+1. Click your distribution's download link above or download from the releases page
+   - Ubuntu/Debian: `PobreMediaPlayer`
+   - Fedora/Nobara: `PobreMediaPlayer-Nobara`
 2. Open terminal in the download folder
 3. Make it executable (if needed - newer releases have this pre-set):
    ```bash
