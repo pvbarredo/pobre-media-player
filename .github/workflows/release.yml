@@ -102,6 +102,7 @@ jobs:
 
   create-release:
     needs: [build-windows, build-linux, build-fedora-nobara]
+    if: always()  # Run even if some builds fail
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -110,18 +111,21 @@ jobs:
       
       - name: Download Windows build
         uses: actions/download-artifact@v4
+        continue-on-error: true
         with:
           name: windows-build
           path: ./artifacts/windows
       
       - name: Download Linux build
         uses: actions/download-artifact@v4
+        continue-on-error: true
         with:
           name: linux-build
           path: ./artifacts/linux
       
       - name: Download Fedora/Nobara build
         uses: actions/download-artifact@v4
+        continue-on-error: true
         with:
           name: fedora-nobara-build
           path: ./artifacts/fedora
@@ -135,3 +139,4 @@ jobs:
             ./artifacts/fedora/PobreMediaPlayer-Nobara
           generate_release_notes: true
           token: ${{ secrets.GITHUB_TOKEN }}
+          fail_on_unmatched_files: false
