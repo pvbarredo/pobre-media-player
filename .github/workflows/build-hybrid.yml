@@ -45,9 +45,9 @@ jobs:
           name: windows-build
           path: dist/PobreMediaPlayer.exe
           retention-days: 7
-
-  # Linux build uses self-hosted Linux runner
+  # Linux build uses GitHub-hosted Ubuntu runner
   build-linux:
+    runs-on: ubuntu-latest
     runs-on: [self-hosted, linux]
     
     steps:

@@ -41,21 +41,31 @@ This guide helps you set up and use your Windows PC as a GitHub Actions runner f
 ### Build (Self-Hosted) (`.github/workflows/build-hybrid.yml`)
 - **Triggers**: Push to main/master, pull requests, or manual dispatch
 - **Runners**: Your self-hosted Windows and Linux runners
-- **Use case**: Regular development builds on both platforms
+- **Use case**: Regular development builds that you want to run **only** on your own machine
 
-### Build and Release (`.github/workflows/release.yml`)
+### 2. Build on Hybrid Runners (`.github/workflows/build-hybrid.yml`)
+- **Triggers**: Push to main/master, pull requests, or manual dispatch
+- **Runners**: Combination of self-hosted and GitHub-hosted runners (for example, your Windows PC plus GitHub-hosted runners)
+- **Use case**: Development builds where you want to use your self-hosted runner when available, but also allow GitHub-hosted runners to run jobs (for additional capacity or other platforms)
+
+### 3. Build and Release (`.github/workflows/release.yml`)
 - **Triggers**: Git tags (v*)
-- **Runners**: GitHub-hosted (Windows + Linux)  
+- **Runners**: GitHub-hosted (Windows + Linux)
 - **Use case**: Official releases with both platforms
 
-## Prerequisites
+## Usage
 
-**Before running the workflow**, ensure your runners have the necessary dependencies installed:
+### Option 1: Use Self-Hosted + Release
+- Keep **build-self-hosted.yml** and **release.yml** active
+- Self-hosted workflow runs on regular commits on your Windows PC only
+- Release workflow runs on tagged releases using GitHub-hosted runners for both platforms
 
-### Windows Runner
-- Python 3.11+ installed
-- Internet access for pip installs
-- PowerShell execution policy set to RemoteSigned or Bypass
+### Option 2: Use Hybrid + Release (recommended when you have both self-hosted and GitHub-hosted runners)
+- Keep **build-hybrid.yml** and **release.yml** active
+- Hybrid workflow runs on regular commits and can use your self-hosted runner and/or GitHub-hosted runners
+- Release workflow still runs on tagged releases using GitHub-hosted runners
+
+### Option 3: Manual Trigger of Self-Hosted Build
 
 ### Linux Runner  
 - Python 3.11+ installed
