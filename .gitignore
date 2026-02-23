@@ -37,3 +37,7 @@ test_videos/
 *.mkv
 *.mov
 *.csv
+
+# Backup files
+player_old.py
+*_old.py
