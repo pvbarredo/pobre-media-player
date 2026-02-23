@@ -394,7 +394,6 @@ Before releasing, update these constants in `player.py`:
 
 ```python
 VERSION = "1.0.0"  # Update version number for releases
-GITHUB_REPO = "pvbarredo/pobre-media-player"  # Your GitHub username/repo
 ```
 
 ### Dependencies

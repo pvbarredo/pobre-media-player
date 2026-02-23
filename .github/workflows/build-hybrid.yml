@@ -1,14 +1,15 @@
-name: Build (Self-Hosted)
+name: Build (Self-Hosted) - DISABLED
 
 on:
-  push:
-    branches:
-      - main
-      - master
-  pull_request:
-    branches:
-      - main
-      - master
+  # Workflow disabled - uncomment below to re-enable
+  # push:
+  #   branches:
+  #     - main
+  #     - master
+  # pull_request:
+  #   branches:
+  #     - main
+  #     - master
   workflow_dispatch:
 
 permissions:
