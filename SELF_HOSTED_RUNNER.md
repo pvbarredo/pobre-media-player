@@ -38,27 +38,46 @@ This guide helps you set up and use your Windows PC as a GitHub Actions runner f
 
 ## Workflows Created
 
-### 1. Build on Self-Hosted Runner (`.github/workflows/build-self-hosted.yml`)
+### Build (Self-Hosted) (`.github/workflows/build-hybrid.yml`)
 - **Triggers**: Push to main/master, pull requests, or manual dispatch
-- **Runner**: Your self-hosted Windows PC
-- **Use case**: Regular development builds
+- **Runners**: Your self-hosted Windows and Linux runners
+- **Use case**: Regular development builds on both platforms
 
-### 2. Build and Release (`.github/workflows/release.yml`)
+### Build and Release (`.github/workflows/release.yml`)
 - **Triggers**: Git tags (v*)
-- **Runners**: GitHub-hosted (Windows + Linux)
+- **Runners**: GitHub-hosted (Windows + Linux)  
 - **Use case**: Official releases with both platforms
+
+## Prerequisites
+
+**Before running the workflow**, ensure your runners have the necessary dependencies installed:
+
+### Windows Runner
+- Python 3.11+ installed
+- Internet access for pip installs
+- PowerShell execution policy set to RemoteSigned or Bypass
+
+### Linux Runner  
+- Python 3.11+ installed
+- Qt6 development libraries (install manually before first build):
+  ```bash
+  sudo apt-get update
+  sudo apt-get install -y qt6-base-dev libgl1-mesa-dev \
+    libxcb-xinerama0 libxcb-cursor0 libxkbcommon-x11-0 \
+    libxcb-icccm4 libxcb-image0 libxcb-keysyms1 \
+    libxcb-randr0 libxcb-render-util0 libxcb-shape0
+  ```
 
 ## Usage
 
-### Option 1: Use Both Workflows
-- Keep both workflows active
-- Self-hosted workflow runs on regular commits
-- Release workflow runs on tagged releases using GitHub runners
+### Automatic Builds
+- The workflow automatically triggers on push to main/master branches
+- Both Windows and Linux builds run in parallel on your self-hosted runners
 
-### Option 2: Manual Trigger
-You can manually trigger the self-hosted build:
+### Manual Trigger
+You can manually trigger a build:
 1. Go to **Actions** tab in GitHub
-2. Select "Build on Self-Hosted Runner"
+2. Select "Build (Self-Hosted)"
 3. Click "Run workflow"
 4. Select branch and click "Run workflow"
 
@@ -68,14 +87,7 @@ If you also have a Linux self-hosted runner, follow similar steps:
 
 1. **Download and configure the Linux runner** from GitHub Settings → Actions → Runners
 2. **Add the `linux` label** during configuration
-3. **Install system dependencies for PyQt6**:
-   ```bash
-   sudo apt-get update
-   sudo apt-get install -y qt6-base-dev libgl1-mesa-dev \
-     libxcb-xinerama0 libxcb-cursor0 libxkbcommon-x11-0 \
-     libxcb-icccm4 libxcb-image0 libxcb-keysyms1 \
-     libxcb-randr0 libxcb-render-util0 libxcb-shape0
-   ```
+3. **Install system dependencies for PyQt6** (see Prerequisites section above)
 4. **Start the runner as a service**:
    ```bash
    sudo ./svc.sh install
@@ -98,10 +110,9 @@ If you also have a Linux self-hosted runner, follow similar steps:
 - **PowerShell execution policy error**: Run `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force`
 
 #### Linux
-- **PyQt6 build errors**: Install Qt6 development libraries (see Linux Runner Setup above)
+- **PyQt6 build errors**: Install Qt6 development libraries (see Prerequisites section above)
 - Ensure Python 3.11+ is installed
-- Runner needs sudo privileges for installing system packages
-- Check that the runner user can execute sudo without password prompt (add to sudoers)
+- Check runner has internet access for pip installs
 
 ### Runner Performance
 - The runner uses your PC's resources when building
